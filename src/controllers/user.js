@@ -4,13 +4,14 @@ module.exports = {
   async create(request, response) {
     const { name, password, email } = request.body;
     try {
-      await connection("users").insert({
+     const resp =  await connection("users").insert({
         name,
         password,
         email,
       });
 
       response.json({
+        id: resp[0],
         name,
         password,
         email
